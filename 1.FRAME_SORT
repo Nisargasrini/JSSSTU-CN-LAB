@@ -1,0 +1,38 @@
+import java.util.Scanner;
+public class frameSort {
+    public static class frame{
+        int id;
+        String data;
+        frame(int n, String content){
+            id=n;
+            data=content;
+        }
+    }
+    public static void main(String args[]){
+        int n;
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the number of frames: ");
+        n=sc.nextInt();
+        frame []fs=new frame[n];
+        System.out.println("Enter frame id and data:");
+        for(int i=0;i<n;i++){
+            int id=sc.nextInt();
+            String data=sc.nextLine();
+            fs[i]=new frame(id, data);
+        }
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n-1-i;j++){
+                if(fs[j].id>fs[j+1].id){
+                    frame temp=fs[j];
+                    fs[j]=fs[j+1];
+                    fs[j+1]=temp;
+                }
+            }
+        }
+
+        System.out.println("Frames after sorting : ");
+        for(int i=0;i<n;i++){
+            System.out.println("Frame id : "+fs[i].id+" Frame Data : "+fs[i].data);
+        }
+    }
+}
